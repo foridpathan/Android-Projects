@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     TextView tvEsprestion, tvResult;
     Button btnNine, btnEight, btnSeven, btnSix, btnFive, btnFour, btnThree, btnTwo, btnOne, btnZero, btnPlus, btnMinus, btnDivision, btnMultiply, btnEquation, btnClr;
-    Boolean checkPlus = false, checkMinus = false, checkMultiply = false, checkDivision = false, checkDot = false;
+    Boolean isPress = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +49,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 tvEsprestion.setText(tvEsprestion.getText() + "9");
-                checkPlus = false;
-                checkMinus = false;
-                checkMultiply = false;
-                checkDivision = false;
-                checkDot = false;
+                isPress = false;
             }
         });
 
@@ -61,107 +57,71 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 tvEsprestion.setText(tvEsprestion.getText() + "8");
-                checkPlus = false;
-                checkMinus = false;
-                checkMultiply = false;
-                checkDivision = false;
-                checkDot = false;
+                isPress = false;
             }
         });
         btnSeven.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 tvEsprestion.setText(tvEsprestion.getText() + "7");
-                checkPlus = false;
-                checkMinus = false;
-                checkMultiply = false;
-                checkDivision = false;
-                checkDot = false;
+                isPress = false;
             }
         });
         btnSix.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 tvEsprestion.setText(tvEsprestion.getText() + "6");
-                checkPlus = false;
-                checkMinus = false;
-                checkMultiply = false;
-                checkDivision = false;
-                checkDot = false;
+                isPress = false;
             }
         });
         btnFive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 tvEsprestion.setText(tvEsprestion.getText() + "5");
-                checkPlus = false;
-                checkMinus = false;
-                checkMultiply = false;
-                checkDivision = false;
-                checkDot = false;
+                isPress = false;
             }
         });
         btnFour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 tvEsprestion.setText(tvEsprestion.getText() + "4");
-                checkPlus = false;
-                checkMinus = false;
-                checkMultiply = false;
-                checkDivision = false;
-                checkDot = false;
+                isPress = false;
             }
         });
         btnThree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 tvEsprestion.setText(tvEsprestion.getText() + "3");
-                checkPlus = false;
-                checkMinus = false;
-                checkMultiply = false;
-                checkDivision = false;
-                checkDot = false;
+                isPress = false;
             }
         });
         btnTwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 tvEsprestion.setText(tvEsprestion.getText() + "2");
-                checkPlus = false;
-                checkMinus = false;
-                checkMultiply = false;
-                checkDivision = false;
-                checkDot = false;
+                isPress = false;
             }
         });
         btnOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 tvEsprestion.setText(tvEsprestion.getText() + "1");
-                checkPlus = false;
-                checkMinus = false;
-                checkMultiply = false;
-                checkDivision = false;
-                checkDot = false;
+                isPress = false;
             }
         });
         btnZero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 tvEsprestion.setText(tvEsprestion.getText() + "0");
-                checkPlus = false;
-                checkMinus = false;
-                checkMultiply = false;
-                checkDivision = false;
-                checkDot = false;
+                isPress = false;
             }
         });
         btnPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (checkPlus == false) {
+                if (isPress == false) {
                     tvEsprestion.setText(tvEsprestion.getText() + "+");
-                    checkPlus = true;
+                    isPress = true;
                 } else {
                     return;
                 }
@@ -170,9 +130,9 @@ public class MainActivity extends AppCompatActivity {
         btnMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (checkMinus == false) {
+                if (isPress == false) {
                     tvEsprestion.setText(tvEsprestion.getText() + "-");
-                    checkMinus = true;
+                    isPress = true;
                 } else {
                     return;
                 }
@@ -181,9 +141,9 @@ public class MainActivity extends AppCompatActivity {
         btnMultiply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (checkMultiply == false) {
+                if (isPress == false) {
                     tvEsprestion.setText(tvEsprestion.getText() + "*");
-                    checkMultiply = true;
+                    isPress = true;
                 } else {
                     return;
                 }
@@ -192,9 +152,9 @@ public class MainActivity extends AppCompatActivity {
         btnDivision.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (checkDivision == false) {
+                if (isPress == false) {
                     tvEsprestion.setText(tvEsprestion.getText() + "/");
-                    checkDivision = true;
+                    isPress = true;
                 } else {
                     return;
                 }
@@ -214,14 +174,17 @@ public class MainActivity extends AppCompatActivity {
 
                 String expresion = tvEsprestion.getText().toString();
 
-                Expression expression = new ExpressionBuilder(expresion).build();
-
-                try {
-                    double result = expression.evaluate();
-                    tvResult.setText(Double.toString(result));
-
-                } catch (ArithmeticException ex) {
+                if (expresion.endsWith("+") || expresion.endsWith("-") || expresion.endsWith("*") || expresion.endsWith("/")) {
                     tvResult.setText("Error");
+                } else {
+
+                    Expression expression = new ExpressionBuilder(expresion).build();
+                    try {
+                        double result = expression.evaluate();
+                        tvResult.setText(Double.toString(result));
+                    } catch (ArithmeticException ex) {
+                        tvResult.setText("Error");
+                    }
                 }
             }
         });
