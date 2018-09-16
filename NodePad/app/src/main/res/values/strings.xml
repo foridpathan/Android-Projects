@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Note Pad</string>
+    <string name="add_note">ADD NOTE</string>
+    <string name="view_note">View Note</string>
+    <string name="show_note">Show note</string>
+    <string name="add_new_note">ADD NEW NOTE</string>
+</resources>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Movie Star</string>
+    <string name="beauty_and_the_beast">Beauty and the beast</string>
+    <string name="pg13_comedy_113_min">PG13 | Comedy | 113 min</string>
+    <string name="btn_rent">RENT BDT 35.0</string>
+    <string name="btn_buy">BUY BDT 35.0</string>
+</resources>
