@@ -12,7 +12,6 @@ import java.util.List;
 
 public class SettingsAdaper extends RecyclerView.Adapter<SettingsAdaper.SettingsViewHolder> {
 
-
     List<SettingsModel> dataList;
     Context context;
 
